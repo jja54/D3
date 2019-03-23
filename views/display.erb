@@ -1,7 +1,37 @@
 <html>
   <head></head>
   <body>
-    <h1> DISPLAY </h1>
+    <h3>
+    <% for i in (size-1).downto(0)  %>
+      <%= i %> 
+    <% end %>
+      AND OR NAND NOR </h3>
       <p>
+	
+	<% for i in 0..(2**size)-1  %>
+	  <% for j in 0..size-1  %>
+	    <% if table[i][j] == false %>
+		  <%= false_sym %>
+		<% else %>
+		  <%= true_sym %>
+		<% end %>
+	  <% end %>
+	  <% for j in 0..3 %>
+	    <% if j == 1  %>
+		 &nbsp &nbsp &nbsp &nbsp &nbsp
+		<% elsif j == 2 %>
+		 &nbsp &nbsp
+		<% elsif j == 3 %>
+		 &nbsp &nbsp &nbsp &nbsp &nbsp 
+		<% end %>
+	    <% if output[i][j] == false %>
+		  <%= false_sym %>
+		<% else %>
+		  <%= true_sym %>
+		<% end %>
+	  <% end %>
+	  <p>
+	<% end %>
+	<a href="/">Back to main page</a>
   </body>
 </html>
