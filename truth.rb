@@ -6,7 +6,7 @@ def display_param_error
 end
 
 def parameters_valid(true_sym, false_sym, size)
-  if true_sym == false_sym && !true_sym.nil? && !false_sym.nil? || size.to_i < 2 && !size.nil? || true_sym.length > 1 || false_sym.length > 1
+  if true_sym == false_sym && !true_sym.nil? && !false_sym.nil? || size.to_i < 2 && !size.nil? || true_sym.length > 1 || false_sym.length > 1 || !size.scan(/\D/).empty?
 	false
   else
     true
@@ -93,14 +93,13 @@ post '/display' do
   size = params['s']
   # Default parameters
   if true_sym.nil? || true_sym == ''
-    puts 'true is nil'
     true_sym = 'T'
   end
   if false_sym.nil? || false_sym == ''
     false_sym = 'F'
   end
   if size.nil? || size == ''
-    size = 3
+    size = '3'
   end
   if parameters_valid(true_sym, false_sym, size)
     returned = generate_table(true_sym, false_sym, size)
